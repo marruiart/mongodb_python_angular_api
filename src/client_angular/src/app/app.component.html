@@ -1,0 +1,16 @@
+<div class="header">
+    <h1>Ilea adiestramiento canino</h1>
+    <h2>Gestión de clients</h2>
+</div>
+
+<menu>
+    <div class="buttons">
+        <p-button (click)="table='clients'">Clientes</p-button>
+        <p-button (click)="table='dogs'">Perros</p-button>
+        <p-button (click)="table='breeds'">Razas</p-button>
+    </div>
+</menu>
+
+<app-clients *ngIf="table == 'clients'"></app-clients>
+<app-dogs *ngIf="table == 'dogs'"></app-dogs>
+<app-breeds *ngIf="table == 'breeds'"></app-breeds>

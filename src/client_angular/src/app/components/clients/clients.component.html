@@ -1,0 +1,91 @@
+<p-table [value]="clients" [paginator]="true" [rows]="6" styleClass="p-datatable-striped" [rowHover]="true"
+    [style]="{width: '90vw'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-client>
+        <tr>
+            <td>{{client.user}}</td>
+            <td>{{client.name}}</td>
+            <td>{{client.lastname}}</td>
+            <td>{{client.dni}}</td>
+            <td>{{client.email}}</td>
+            <td>{{client.telephone}}</td>
+            <td>
+                <button pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-eye" iconPos="left"
+                    tittle="Modifica client" (click)="detailClient(client._id, client)"></button>
+
+                <button pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-pencil"
+                    iconPos="left" tittle="Modifica client" (click)="editClient(client)"></button>
+
+                <button pButton type="button" class="p-button-raised p-button-rounded p-button-danger"
+                    icon="pi pi-trash" iconPos="left" tittle="Borrar client"
+                    (click)="removeClient(client._id)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<div class="speedDial">
+    <p-speedDial (click)="displayDialog = !displayDialog"></p-speedDial>
+</div>
+
+<p-dialog header="Cliente" [(visible)]="displayDialog" [style]="{width: '40vw'}">
+
+    <form [formGroup]="clientForm" (ngSubmit)="submitClient()">
+
+        <div class="form-fields">
+
+            <span class="p-float-label">
+                <input id="user" type="text" pInputText class="p-inputtext-sm" formControlName="user">
+                <label for="user">Usuario</label>
+            </span>
+
+            <span class="p-float-label">
+                <input id="name" type="text" pInputText class="p-inputtext-sm" formControlName="name">
+                <label for="name">Nombre</label>
+            </span>
+
+            <span class="p-float-label">
+                <input id="lastname" type="text" pInputText class="p-inputtext-sm" formControlName="lastname">
+                <label for="lastname">Apellidos</label>
+            </span>
+
+            <span class="p-float-label">
+                <p-inputMask id="dni" type="text" mask="99999999a" class="p-inputtext-sm" formControlName="dni">
+                </p-inputMask>
+                <label for="dni">DNI</label>
+            </span>
+
+            <span class="p-float-label">
+                <input id="email" type="text" pInputText class="p-inputtext-sm" formControlName="email">
+                <label for="email">Email</label>
+            </span>
+
+            <span class="p-float-label">
+                <p-inputMask id="telephone" type="text" mask="999999999" class="p-inputtext-sm"
+                    formControlName="telephone"></p-inputMask>
+                <label for="telephone">Teléfono</label>
+            </span>
+
+        </div>
+
+        <p-footer>
+            <p-button type="submit" label="Aceptar" styleClass="p-button-success">
+            </p-button>
+
+            <p-button type="button" label="Cancelar" styleClass="p-button-danger" (click)="displayDialog=false">
+            </p-button>
+        </p-footer>
+    </form>
+
+</p-dialog>

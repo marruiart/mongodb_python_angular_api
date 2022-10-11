@@ -1,0 +1,17 @@
+.header {
+    padding: 2em 0;
+    text-align: center;
+}
+
+menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttons {
+    padding: 0em 0 2em 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
